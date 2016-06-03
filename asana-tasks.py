@@ -152,10 +152,12 @@ print "---"
 # List tasks
 
 today = date.today()
+
+tomorrow = today + timedelta(days=1)
 query = urllib.urlencode({"assignee": assignee_id,
                           "workspace": WORKSPACE_ID,
                           "opt_fields": "due_on,name,projects",
-                          "completed_since": today.strftime("%Y-%m-%dT%H:%M:%S.000Z")})
+                          "completed_since": tomorrow.strftime("%Y-%m-%dT%H:%M:%S.000Z")})
 
 try:
     conn.request("GET", ASANA_API_BASE + "/tasks?" + query, None, headers)
